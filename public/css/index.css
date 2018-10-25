@@ -1,0 +1,10 @@
+html, body{
+    margin: 0;
+    padding:0;
+    height:266px;
+    width:1920px;
+}
+
+body{
+    background: rgba(0,0,0,0);
+}
