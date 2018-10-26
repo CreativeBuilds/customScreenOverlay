@@ -45,10 +45,8 @@ Promise.all([
     let msgSplit = message.split(" ");
     var emote = fetcher.emotes.get(msgSplit[0]);
     if(emote){
-      console.log("Got emote!")
       io.emit('showEmote', {link:emote.toLink(), chatter})
     } else {
-      console.log("No Emote!",msgSplit[0]);
       io.emit('chatter', chatter);
     }
   })
@@ -63,7 +61,6 @@ Bot.on('message', chatter => {
   // console.log(chatter);
   let message = chatter.message;
   if(message[0] !== "!"){
-    console.log("This does not equal !")
     return;
   } 
   message = message.substr(1);
@@ -126,6 +123,11 @@ io.on('connection', function(socket){
     Object.keys(players).forEach((key, index) => {
       socket.emit("playerJoin", players[key]);
     })
+  })
+
+  // TODO make a backend to store this info
+  socket.on("gotCoin", obj => {
+    console.log("User got coin", obj);
   })
 });
 
